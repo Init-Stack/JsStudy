@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+    <body>
+        <h id="app">
+            {{msg}}
+        </h1>
+    </body>
+</html>
+<script>
+// var：可重复声明、存在变量提升（已不推荐使用）
+var name = "张三";
+var name = "李四"; // 重复声明不报错，值被覆盖
+console.log("var name =", name);
+
+// let：块级作用域，不可重复声明
+let age = 18;
+{
+    let age = 20; // 块内独立作用域，不影响外部
+    console.log("块内 let age =", age);
+}
+console.log("块外 let age =", age);
+
+// const：声明常量，不可重新赋值，必须初始化
+const PI = 3.14159;
+console.log("const PI =", PI);
+
+// 对象字面量
+let user = {
+    name: "王五",
+    age: 25,
+    sayHi() {
+        console.log(`你好，我是${this.name}`);
+    }
+};
+console.log("对象 user =", user);
+user.sayHi();
+
+// 数组字面量
+let colors = ["红", "绿", "蓝"];
+console.log("数组 colors =", colors);
+
+let msg = "hello vue";
+</script>

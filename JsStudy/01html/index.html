@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <!-- 引入外部 Vue 3（CDN 方式，引入后全局可用 Vue 对象） -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
   <h1>hello world</h1>
@@ -15,7 +17,26 @@
   </div>
 </body>
 </html>
+
 <script>
+/* 引入外部项目js */
+import { btn, btn2 } from "/02js/test.js";
+/* 引入vue */
+import { createApp } from "vue";
+const app = createApp({
+  data(){
+    return{
+      msg:"hello vue"
+    }
+  },
+  methods:{
+    changeMsg(){
+      this.msg = "hello vue 2";
+    }
+  }
+});
+app.mount("#app");
+
   console.log("Hello");
   const btn = ()=>{
     alert("定义js代码");
