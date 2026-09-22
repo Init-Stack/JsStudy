@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类型转换</title>
+</head>
+<body>
+    <h1>类型转换（按 F12 查看控制台输出）</h1>
+</body>
+</html>
+<script>
+// 1. 转字符串
+console.log(String(123));        // "123"
+console.log((456).toString());   // "456"
+console.log(100 + "");            // "100"（隐式转换）
+
+// 2. 转数字
+console.log(Number("12"));       // 12
+console.log(parseInt("12px"));   // 12（提取整数部分）
+console.log(parseFloat("3.14")); // 3.14
+console.log("12" - 0);           // 12（隐式转换，- 只能算数字）
+console.log(Number("abc"));      // NaN（非数字）
+
+// 3. 转布尔
+console.log(Boolean(0));         // false
+console.log(Boolean(""));        // false
+console.log(Boolean(null));      // false
+console.log(Boolean(1));         // true
+console.log(Boolean("hello"));   // true
+</script>

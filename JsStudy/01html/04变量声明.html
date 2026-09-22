@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变量声明</title>
+</head>
+<body>
+    <h1>变量声明 var / let / const（按 F12 查看控制台输出）</h1>
+</body>
+</html>
+<script>
+// 1. var：函数作用域、存在变量提升、可以重复声明（不推荐）
+var v1 = 1;
+var v1 = 2;            // 重复声明不报错
+console.log("var 重复声明后 v1 =", v1);
+
+// var 没有块级作用域，{ } 限制不住
+{
+    var v2 = 100;
+}
+console.log("块外也能访问 var 的 v2 =", v2);
+
+// 2. let：块级作用域，不能重复声明（推荐用来声明会变化的变量）
+let l1 = 10;
+// let l1 = 20;        // 报错：Identifier 'l1' has already been declared
+{
+    let l2 = 200;      // 只在当前代码块内有效
+    console.log("块内 l2 =", l2);
+}
+// console.log(l2);    // 报错：l2 is not defined
+
+// 3. const：块级作用域，声明时必须赋值，之后不能重新赋值（推荐声明常量）
+const PI = 3.14;
+// PI = 3.15;          // 报错：Assignment to constant variable
+console.log("const PI =", PI);
+
+// 注意：const 保存的对象，其内部属性仍然可以修改
+const person = { name: "张三", age: 18 };
+person.age = 19;       // 不报错，改的是对象内容，不是变量指向
+console.log("const 对象 person =", person);
+
+// 4. 只声明不赋值，结果是 undefined
+let empty;
+console.log("未赋值的变量 empty =", empty);
+
+// 5. 建议：优先用 const，需要重新赋值时用 let，尽量不用 var
+</script>

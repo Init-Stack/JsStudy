@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表达式与语句</title>
+</head>
+<body>
+    <h1>表达式与语句（按 F12 查看控制台输出）</h1>
+</body>
+</html>
+<script>
+// 1. 表达式：有返回值
+console.log(1 + 2);              // 3
+console.log(10 > 5);             // true
+console.log("a" + "b");         // "ab"
+
+// 2. 语句：执行一个动作，不一定有返回值
+let x = 10;                      // 赋值语句
+if (x > 5) {
+    console.log("x 大于 5");
+}
+
+// 3. 运算符表达式
+let a = 3;
+console.log(a++);                // 3（先返回再自增）
+console.log(a);                 // 4
+console.log(a % 2);             // 0（取余）
+
+// 4. 逻辑运算
+console.log(true && false);     // false
+console.log(true || false);     // true
+console.log(!true);             // false
+
+// 5. 数组索引判断是否有值
+let arr = [10, 20, , 40];       // 索引 2 是空位（hole）
+console.log("arr[0] =", arr[0]);           // 10
+console.log("arr[2] =", arr[2]);           // undefined（空位）
+console.log("arr[10] =", arr[10]);         // undefined（越界）
+// 用 in 判断某个索引是否存在（是否被赋过值）
+console.log("0 in arr ->", 0 in arr);      // true
+console.log("2 in arr ->", 2 in arr);      // false（空位不算）
+console.log("10 in arr ->", 10 in arr);    // false
+
+// 6. in 关键字：判断属性是否存在于对象中
+let user = { name: "张三", age: 18 };
+console.log('"name" in user ->', "name" in user);   // true
+console.log('"gender" in user ->', "gender" in user); // false
+
+// in 也能判断数组索引，但不能用来判断"值是否存在"
+let colors = ["红", "绿", "蓝"];
+console.log('1 in colors ->', 1 in colors);  // true（索引 1 存在）
+console.log('"红" in colors ->', "红" in colors); // false（in 查的是索引/属性名，不是值）
+</script>

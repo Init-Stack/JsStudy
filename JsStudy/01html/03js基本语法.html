@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS基本语法</title>
+</head>
+<body>
+    <h1>JS 基本语法（按 F12 查看控制台输出）</h1>
+</body>
+</html>
+<script>
+// 1. 语句：一行就是一条语句，建议用分号结尾
+let a = 10;
+let b = 20;
+console.log("a + b =", a + b);
+
+// 2. 注释：单行用 //，多行用 /* ... */
+// 这是单行注释
+/*
+   这是
+   多行注释
+*/
+
+// 3. 大小写敏感：name 和 Name 是两个不同的变量
+let name = "张三";
+let Name = "李四";
+console.log("name =", name, "，Name =", Name);
+
+// 4. 标识符命名规则：字母、数字、下划线、$ 组成，不能以数字开头
+let user_name = "王五";   // 下划线命名
+let userName = "赵六";    // 小驼峰命名（推荐）
+let $el = "div";
+console.log(user_name, userName, $el);
+
+// 5. 代码块：用 { } 把多条语句包成一组
+{
+    let c = 1;
+    let d = 2;
+    console.log("代码块内 c + d =", c + d);
+}
+
+// 6. 常用运算符：算术、赋值、比较
+let x = 5;
+x += 3;                 // 等价于 x = x + 3
+console.log("x =", x);
+console.log("x > 7 吗？", x > 7);
+console.log("x === 8 吗？", x === 8);
+
+// 7. 输出方式
+console.log("输出到控制台");   // 调试最常用
+// document.write("输出到页面");
+// alert("弹出提示框");
+</script>

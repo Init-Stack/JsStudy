@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据类型</title>
+</head>
+<body>
+    <h1>JS 数据类型（按 F12 查看控制台输出）</h1>
+</body>
+</html>
+<script>
+// ===== 一、基本数据类型（简单类型）=====
+
+// 1. number 数字：整数和小数都是 number
+let num = 18;
+let price = 9.9;
+console.log("number：", num, price);
+
+// 2. string 字符串：用引号包裹
+let str = "你好";
+let str2 = 'JavaScript';
+console.log("string：", str, str2);
+
+// 3. boolean 布尔：只有 true / false
+let isLogin = true;
+console.log("boolean：", isLogin);
+
+// 4. undefined：声明了但没有赋值
+let u;
+console.log("undefined：", u);
+
+// 5. null：表示“空值”，需要手动设置
+let n = null;
+console.log("null：", n);
+
+// 6. symbol 与 7. bigint（了解即可）
+let sym = Symbol("id");
+let big = 123456789012345678901234n;
+console.log("symbol：", sym, "，bigint：", big);
+
+// ===== 二、引用数据类型 =====
+
+// object 对象：用 { } 存放多个键值对
+let user = { name: "李四", age: 20 };
+// 数组也是对象的一种，用 [ ] 存放一组数据
+let hobbies = ["读书", "跑步", "编程"];
+console.log("object：", user, hobbies);
+
+// ===== 三、用 typeof 判断数据类型 =====
+console.log("typeof 18 ->", typeof 18);
+console.log("typeof '你好' ->", typeof "你好");
+console.log("typeof true ->", typeof true);
+console.log("typeof undefined ->", typeof undefined);
+console.log("typeof null ->", typeof null);      // 历史遗留问题，结果是 "object"
+console.log("typeof 对象 ->", typeof user);
+
+// ===== 四、简单的类型转换 =====
+console.log("String(123) ->", String(123), typeof String(123));
+console.log("Number('456') ->", Number("456"), typeof Number("456"));
+console.log("Boolean(1) ->", Boolean(1), "，Boolean(0) ->", Boolean(0));
+</script>
