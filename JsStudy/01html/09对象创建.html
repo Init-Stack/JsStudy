@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象创建</title>
+</head>
+<body>
+    <h1>对象的创建方式（按 F12 查看控制台输出）</h1>
+</body>
+</html>
+<script>
+// 1. 字面量创建（最常用）
+let user1 = {
+    name: "张三",
+    age: 18,
+    sayHi() {
+        console.log("我是" + this.name);
+    }
+};
+user1.sayHi();
+
+// 2. new Object() 创建
+let user2 = new Object();
+user2.name = "李四";
+user2.age = 20;
+user2.sayHi = function () {
+    console.log("我是" + this.name);
+};
+user2.sayHi();
+
+// 3. 工厂函数：用函数批量创建相似对象
+function createUser(name, age) {
+    return {
+        name: name,
+        age: age,
+        sayHi() {
+            console.log("我是" + this.name + "，今年" + this.age + "岁");
+        }
+    };
+}
+let user3 = createUser("王五", 25);
+user3.sayHi();
+
+// 4. 构造函数：用 new 调用，this 指向新实例
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    this.sayHi = function () {
+        console.log("我是" + this.name);
+    };
+}
+let user4 = new Person("赵六", 30);
+user4.sayHi();
+console.log("user4 是 Person 的实例吗？", user4 instanceof Person);
+
+// 5. class 语法（ES6，本质还是构造函数的语法糖）
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+    speak() {
+        console.log(this.name + " 在叫");
+    }
+}
+let dog = new Animal("小狗");
+dog.speak();
+</script>

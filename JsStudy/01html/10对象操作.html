@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象操作</title>
+</head>
+<body>
+    <h1>对象的增删改查与遍历（按 F12 查看控制台输出）</h1>
+</body>
+</html>
+<script>
+let user = {
+    name: "张三",
+    age: 18
+};
+
+// 1. 查：读取属性（两种写法）
+console.log(user.name);        // 点语法
+console.log(user["age"]);     // 方括号语法（属性名是变量时用）
+
+// 2. 增：添加新属性
+user.gender = "男";
+console.log("添加后 =", user);
+
+// 3. 改：修改已有属性
+user.age = 20;
+console.log("修改后 =", user);
+
+// 4. 删：删除属性
+delete user.gender;
+console.log("删除后 =", user);
+
+// 5. 判断属性是否存在
+console.log('"name" in user ->', "name" in user);
+console.log('"gender" in user ->', "gender" in user);
+console.log("user.hasOwnProperty('age') ->", user.hasOwnProperty("age"));
+
+// 6. 遍历对象
+let book = { title: "JS入门", price: 50, author: "张三" };
+
+// for...in 遍历所有可枚举属性
+for (let key in book) {
+    console.log(key + " = " + book[key]);
+}
+
+// Object.keys 获取所有属性名
+console.log("Object.keys ->", Object.keys(book));
+
+// Object.values 获取所有属性值
+console.log("Object.values ->", Object.values(book));
+
+// Object.entries 获取键值对数组
+console.log("Object.entries ->", Object.entries(book));
+
+// 7. 合并对象（展开运算符 ...）
+let part1 = { a: 1, b: 2 };
+let part2 = { c: 3 };
+let merged = { ...part1, ...part2 };
+console.log("合并后 =", merged);
+</script>

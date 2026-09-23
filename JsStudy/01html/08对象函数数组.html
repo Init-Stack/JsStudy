@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象函数数组</title>
+</head>
+<body>
+    <h1>对象、函数、数组（按 F12 查看控制台输出）</h1>
+</body>
+</html>
+<script>
+// ===== 一、对象：键值对的集合 =====
+let user = {
+    name: "张三",
+    age: 18,
+    sayHi() {
+        console.log("你好，我是" + this.name);
+    }
+};
+console.log(user.name);    // 张三
+user.sayHi();
+
+// ===== 二、函数：封装可复用的代码块 =====
+// 1. 函数声明
+function add(a, b) {
+    return a + b;
+}
+console.log("add(1, 2) =", add(1, 2));
+
+// 2. 函数表达式（赋值给变量）
+const multiply = function (a, b) {
+    return a * b;
+};
+console.log("multiply(3, 4) =", multiply(3, 4));
+
+// 3. 箭头函数（简写）
+const subtract = (a, b) => a - b;
+console.log("subtract(10, 3) =", subtract(10, 3));
+
+// ===== 三、数组：有序的数据集合 =====
+let colors = ["红", "绿", "蓝"];
+console.log("数组长度 =", colors.length);
+console.log("colors[0] =", colors[0]);
+
+// 常用方法
+colors.push("黄");              // 末尾添加
+console.log("push 后 =", colors);
+colors.unshift("白");          // 开头添加
+console.log("unshift 后 =", colors);
+colors.pop();                  // 删除末尾
+console.log("pop 后 =", colors);
+
+// 遍历数组
+colors.forEach((item, index) => {
+    console.log(`第${index}个颜色是${item}`);
+});
+</script>
