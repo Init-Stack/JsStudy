@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象方法</title>
+</head>
+<body>
+
+<script>
+    let employee = {
+        name:'张三',
+        age:30,
+        job:'销售'
+    }
+
+    //toString
+    console.log(employee.toString());
+    employee.toString = function(){
+        return`{
+        "name":${this.name},
+        "age":${this.age},
+        "job":${this.job}
+        }
+        `
+    };
+    console.log(employee.toString());
+
+
+
+    //valueOf()
+    console.log(employee.valueOf());
+    //重写volueOf
+    employee.valueOf=function(){
+        return employee.age();
+    };
+    console.log(employee.valueOf());
+</script>
+
+
+</body>
+</html>
