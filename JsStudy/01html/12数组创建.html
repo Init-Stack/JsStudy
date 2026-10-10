@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组创建</title>
+</head>
+<body>
+
+<script>
+    // 1. 字面量创建（最常用）
+    let arr1 = [1, 2, 3];
+    console.log("字面量创建：", arr1);
+
+    // 2. new Array() 创建
+    let arr2 = new Array(1, 2, 3);
+    console.log("new Array(1,2,3)：", arr2);
+
+    // 注意：只传一个数字时，表示长度而不是元素
+    let arr3 = new Array(3);
+    console.log("new Array(3)：", arr3, "长度 =", arr3.length);
+
+    // 3. Array.of()：把参数作为元素（解决上面一个数字的问题）
+    let arr4 = Array.of(3);
+    console.log("Array.of(3)：", arr4);
+
+    // 4. Array.from()：把类数组/可迭代对象转成数组
+    let str = "hello";
+    let arr5 = Array.from(str);
+    console.log("Array.from('hello')：", arr5);
+
+    // 5. 混合类型的数组
+    let arr6 = [1, "字符串", true, { name: "张三" }, [1, 2]];
+    console.log("混合数组：", arr6);
+</script>
+
+</body>
+</html>
