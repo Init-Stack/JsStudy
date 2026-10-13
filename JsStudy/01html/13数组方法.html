@@ -1,139 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>数组方法</title>
+  <meta charset="UTF-8">
+  <title>数组方法</title>
 </head>
 <body>
-
 <script>
-    let arr = [1, 2, 3, 4, 5];
+  //forEach()方法
+  let arr1 = [1,2,3,4,5]
+  let sum =0
+  function fnsum(a){
+    return sum = sum+a
+  }
+  //forEach会把原数组的元素逐个传进调用函数，进行处理（求和）
+  //当传进的函数(箭头函数),只有一个形参时（x），x就表示数组元素
+  // arr1.forEach((a)=>{return sum = sum+a})
+  arr1.forEach(a=>sum = sum+a) //arr1.forEach(fncum)
+  console.log(sum)
 
-    // 1. 增删：push / pop / shift / unshift
-    arr.push(6);        // 末尾添加
-    arr.pop();          // 末尾删除
-    arr.unshift(0);     // 开头添加
-    arr.shift();        // 开头删除
-    console.log("增删后：", arr);
+  // 当传进的函数(箭头函数),有3个参数时
+  //第一个参数x，就是数组元素
+  //第二个参数index，是当前迭代元素的索引
+  //第三个参数arr，是数组本身
+  arr1.forEach((x,index,arr)=>{
+    console.log(x+'-'+index,arr)
+  })
+  //forEach不能中断，只能连续输出
 
-    // 2. slice：截取（不改变原数组）
-    let part = arr.slice(1, 3);
-    console.log("slice(1,3)：", part, "原数组：", arr);
 
-    // 3. splice：删除/替换/插入（改变原数组）
-    let arr2 = [1, 2, 3, 4, 5];
-    arr2.splice(1, 2);          // 从索引1删除2个
-    console.log("splice 删除后：", arr2);
+  //map()方法：使用传入的函数，对原数组元素进行逐个处理
+  //得到的结果构成一个新的数组
+  let arr2 = [1,2,3,4,5];
 
-    // splice 插入：从索引1删除0个，插入 9
-    let arr3 = [1, 2, 3];
-    arr3.splice(1, 0, 9);
-    console.log("splice 插入后：", arr3);
+  let arr3 = arr2.map(x=>x*x)
+  console.log(arr2)
+  console.log(arr3)
+  //对于稀疏数组，空位置map方法忽略不处理，得到的数组也是稀疏的、
 
-    // splice 替换：从索引1删除1个，替换成 8
-    let arr4 = [1, 2, 3];
-    arr4.splice(1, 1, 8);
-    console.log("splice 替换后：", arr4);
+  //filler()方法：使用过滤函数对数组元素进行处理
+  //符合条件的元素构成新的数组
+  //过滤必须是断言函数
+  let arr4 = [1,2,3,4,5];
+  let arr4_1 = arr4.filter(x => x%2==0)
+  console.log(arr4)
+  console.log(arr4_1)
+  //filter方法会清除稀疏矩阵数组空的元素
 
-    // 4. 遍历：forEach / map / filter
-    let nums = [1, 2, 3, 4, 5];
-    nums.forEach((n, i) => console.log(`索引${i} = ${n}`));
+  let arr4_2 = [1,,2,3,4,,5];
+  let arr4_3 = arr4_2.filter(()=>true)
+  console.log(arr4_2)
+  console.log(arr4_3)
+  //也可以使用filter处理数组中的null，undefined
+  let arr4_4 = [1,2,null,3,,undefined,5];
+  let arr4_5 = arr4_4.filter(x=> x!==null && x!==undefined)
+  console.log(arr4_5)
 
-    let doubled = nums.map(n => n * 2);
-    console.log("map 翻倍：", doubled);
+  //reduce()方法：使用传入函数(归并函数)，对数组进行归并处理
+  //返回一个结果值
+  let arr5 = [1,2,3,4,5];
 
-    let evens = nums.filter(n => n % 2 === 0);
-    console.log("filter 偶数：", evens);
+  //reduce只传入一个归并函数：（a，b）=> a+b ==>求和
+  //归并函数：有两个参数a、b
+  //第一次迭代：a取数组的第一个元素，b取元素的第二个元素
+  ///第二次后的迭代：a为上一次归并运算的结果，b为数组的下一个元素
+  let result1 = arr5.reduce((a,b)=> a+b)
+  console.log(result1)
+  let result2 = arr5.reduce((a,b)=>{
+    console.log(`a=${a}-${b}`,a+b)
+    return a+b
+  })
+  // console.log(result2)
 
-    // 5. 查找：indexOf / includes / find / findIndex / lastIndexOf
-    console.log("indexOf(3)：", nums.indexOf(3));
-    console.log("includes(10)：", nums.includes(10));
-    console.log("find 第一个大于3的：", nums.find(n => n > 3));
-    console.log("findIndex 第一个大于3的索引：", nums.findIndex(n => n > 3));
-    console.log("lastIndexOf(3)：", [1, 3, 3, 5].lastIndexOf(3));
+  //reduce传入两个参数
+  //reduce第一个参数：归并函数（a,b) => a+b
+  //reduce第二个参数（可选）：初始值7
+  //归并函数的参数a，b
+  //第一次迭代：a为reduce的第二个参数（初始值），b为数组第一个元素
+  //第二次迭代：a为上一次迭代结果 ，b为数组下一个元素
+  // let result3 = arr5.reduce((a,b)=>a+b,7)
+  let result3 = arr5.reduce((a,b)=>{
+    console.log(`a=${a}-${b}`,a+b)
+    return a+b
+  },7)
+  console.log(result3)
 
-    // 6. 其他常用：join / concat / reverse / sort
-    console.log("join：", nums.join("-"));
-    console.log("concat：", nums.concat([6, 7]));
-    console.log("reverse：", [...nums].reverse());
-    console.log("sort：", [3, 1, 2].sort());
+  //push()方法:往数组尾部推入一个元素
+  let arr6 = ['a', 'b', 'c', 'd', 'e', 'f'];
+  console.log(arr6)
+  arr6.push('k')
+  console.log(arr6)
+  //pop方法：从尾部推出一个元素，并返回
+  let result4 = arr6.pop()
+  console.log(result4)
+  console.log(arr6)
+  //shift:从数组的头部移出一个元素，并返回
+  let result5 =arr6.shift()
+  console.log(result5)
+  console.log(arr6)
+  //unshift:从头部压入一个元素
+  arr6.unshift('k')
+  console.log(arr6)
 
-    // 7. reduce：累加，把数组归并成一个值
-    let sum = nums.reduce((acc, cur) => acc + cur, 0);
-    console.log("reduce 求和：", sum);
+  //slice:抽取子数组
+  let arr7 = ['a', 'b', 'c', 'd', 'e', 'f'];
+  console.log(arr7)
+  let arr8 =arr7.slice(2,4)
+  console.log(arr8)
+  console.log(arr7)
 
-    let product = nums.reduce((acc, cur) => acc * cur, 1);
-    console.log("reduce 求积：", product);
+  //splice:对数组模拟增删改删改查的操作
+  let arr9 = ['a', 'b', 'c', 'd', 'e', 'f'];
+  console.log(arr9)
+  //第一个参数，指定要删除的索引
+  //第二个参数，指定要删除多少个元素
+  arr9.splice(2,1)
+  console.log(arr9)
+  //模拟添加
+  let arr10 = ['a', 'b', 'c', 'd', 'e', 'f'];
+  console.log(arr10)
+  //第一个参数，指定要删除元素的素引
+  //第二个参数，指定要删除多少个元素，不删除
+  //第三个参数。要插入的元素
+  arr10.splice(2,0,'k')
+  console.log(arr10)
+  let arr11 = ['a', 'b', 'c', 'd', 'e', 'f'];
+  console.log(arr11)
+  arr11.splice(2,1,'k')
+  console.log(arr11)
 
-    // 8. some / every：判断数组是否满足条件
-    let hasEven = nums.some(n => n % 2 === 0);
-    console.log("some 是否有偶数：", hasEven);
+  //解构数组：使用一组变量，把数组元素取出赋值
+  let arr12 = ['a', 'b', 'c']
+  let [first,second]=arr12
+  console.log(first)
+  console.log(second)
 
-    let allPositive = nums.every(n => n > 0);
-    console.log("every 是否全为正数：", allPositive);
 
-    // 9. flat / flatMap：拍平嵌套数组
-    let nested = [1, [2, [3, 4]], 5];
-    console.log("flat(1)：", nested.flat());
-    console.log("flat(Infinity)：", nested.flat(Infinity));
 
-    let flatMapped = [[1, 2], [3, 4]].flatMap(arr => arr);
-    console.log("flatMap：", flatMapped);
 
-    // 10. fill：用固定值填充
-    let filled = new Array(3).fill(0);
-    console.log("fill 创建：", filled);
 
-    let arr5 = [1, 2, 3, 4, 5];
-    arr5.fill(0, 1, 3);   // 从索引1到3填充0
-    console.log("fill 部分填充：", arr5);
 
-    // 11. Array.isArray：判断是否为数组
-    console.log("Array.isArray([])：", Array.isArray([]));
-    console.log("Array.isArray({})：", Array.isArray({}));
 
-    // 12. at()：用索引取值，支持负数（从末尾算）
-    let arr6 = [10, 20, 30, 40, 50];
-    console.log("at(0)：", arr6.at(0));     // 10
-    console.log("at(-1)：", arr6.at(-1));   // 50（最后一个）
 
-    // 13. entries / keys / values：返回迭代器
-    let arr7 = ["a", "b", "c"];
-    for (let [index, value] of arr7.entries()) {
-        console.log(`entries: ${index} -> ${value}`);
-    }
-    for (let key of arr7.keys()) {
-        console.log("keys:", key);
-    }
 
-    // 14. sort 带比较函数（数字排序）
-    let nums2 = [10, 2, 33, 5, 1];
-    console.log("sort 升序：", [...nums2].sort((a, b) => a - b));
-    console.log("sort 降序：", [...nums2].sort((a, b) => b - a));
 
-    // 15. toString：数组转字符串
-    console.log("toString：", [1, 2, 3].toString());
 
-    // 16. copyWithin：内部复制（改变原数组）
-    let arr8 = [1, 2, 3, 4, 5];
-    arr8.copyWithin(0, 3);  // 把索引3开始的元素复制到索引0
-    console.log("copyWithin 后：", arr8);
 
-    // 17. 实战：数组去重
-    let dup = [1, 2, 2, 3, 3, 3, 4];
-    let unique = [...new Set(dup)];
-    console.log("数组去重：", unique);
 
-    // 18. 实战：数组最大值
-    let max = Math.max(...nums);
-    console.log("最大值：", max);
 
-    // 19. 实战：合并数组的三种方式
-    let a1 = [1, 2], a2 = [3, 4];
-    console.log("concat 合并：", a1.concat(a2));
-    console.log("展开符合并：", [...a1, ...a2]);
-    console.log("push 合并：", [].concat(a1, a2));
+
 </script>
 
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
 </body>
 </html>

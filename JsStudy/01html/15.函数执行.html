@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>函数执行</title>
+</head>
+<body>
+<script>
+  //1作为函数执行
+  function fn1(a,b){
+    return a + b
+  }
+  let result1 = fn1(1,2)
+  console.log(result1)
+  //2作为对象方法执行
+  let obj1={
+    name:'张三',
+    age:19,
+    study : function(){
+      console.log(`${this.name}正在学习... )
+    }
+  }
+
+  obj1.study
+  //3 函数定义成构造函数：使用关键字new调用，可以创建对象
+  function User(){
+  this.name = '李四'
+    this.age = 10
+    this.study = function(){
+  console.log(``)
+    }
+  }
+  }
+  let user1 = new User()
+  user1.study()
+  //4 使用函数对象的call/apply方法见执行
+  //4 call方法
+  function printInfo(name,age,job){
+    console.log(name)
+    console.log(age)
+    console.log(job)
+  }
+  //call接受两个参数
+  //第一个参数：调用call方法的函数(printInfo)执行的
+  //上下文环境
+  //第二个参数：就是传输调用函数的实参
+  printInfo.call(this,['张三',19,'学生'])
+  //apply方法接受两个参数
+  printInfo.apply(this,['李四',28,'工程师'])
+  //5立即执行的函数表达式IIFE
+    (function fn5(a,b){
+      console.log(a+b)
+    })(2,3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
