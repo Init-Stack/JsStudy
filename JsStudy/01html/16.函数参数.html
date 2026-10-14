@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this关键字</title>
+</head>
+<body>
+<script>
+    //全局上下文：this-》window
+    console.log(this)
+
+    //函数上下文
+    //1. 函数作为一个普通函数执行
+    //函数里面的this指向window对象
+    function fn1(){
+        console.log(this)
+    }
+
+    fn1()
+
+    //2  函数作为对象方法被调用
+    //函数里面的this指向对象本身
+    let obj1 = {
+        method1:fn1
+    }
+    let obj2 = {
+        method2:fn1
+    }
+
+    console.log('函数作为对象方法执行this:')
+    obj1.method1()
+    obj2.method2()
+    
+    //3 函数作为构造函数执行
+    //构造函数中this指向
+    function Person(name){
+        this.name = name
+        console.log(this)
+    }
+
+    console.log('构造函数中的this:')
+    let p1 = new Person('张三')
+    let p2 = new Person('李四')
+    
+</script>
+
+</body>
+</html>
