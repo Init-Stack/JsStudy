@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数属性方法</title>
+</head>
+<body>
+
+
+
+<script>
+
+    //bind方法：可用动态把函数绑定到一个对象
+    function fn1(a) {
+        return this.x+a;
+    }
+    let obj1={
+        x:1
+    }
+
+    //把函数fn2绑到一个对象上，得到一个新的函数
+    let newFn =fn1.bind(obj1);
+    let result =newFn(3)//=>4
+    console.log(result)
+
+
+</script>
+</body>
+</html>

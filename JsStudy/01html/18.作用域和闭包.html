@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作用域和闭包</title>
+</head>
+<body>
+
+
+
+<script>
+
+    //全局作用域-全局变量
+    let a1 =123
+    const PI = 3.14
+    var a2 = 'abc'
+
+
+    //函数作用域--局部变量
+    function fn1() {
+        //局部作用域，只能早内部使用
+        let b1= 123 ;
+        const b2= 123;
+        var b3= 'sf';
+        console.log(a1, b2);//a1全局可用
+    }
+
+
+    //代码块作用域--局部变量
+    //使用let/const声明的变量没有块级作用域
+    //var声明的变量没有块级作用域
+    {
+        let c1 = 123;
+        const c2 = 123;
+        var c3 = 'da';
+        console.log(c1, c2,c3);
+    }
+    console.log(c3)//c3变量污染
+    // console.log(c1,c2)c超出作用域
+
+
+
+    //当函数（fn3）作为另一个函数（fn4）的结果返回时
+    //
+
+
+    function fn4(){
+        let c1 = 123;
+        console.log(c1+'在fn4里面使用')
+        return function fn3(){
+            console.log(c1+'在fn3中使用')
+        }
+    }
+    //执行fn4正常使用变量c1
+    fn4()
+    //当使用fn4的结果返回的函数时
+    const fn3_n =  fn4()
+    fn3_n()//能正常访问c1
+
+
+    //闭包概念
+    //函数（fn3）作为另外一个函数（fn4）的结果返回
+    //当fn3使用到fn4内部定义的变量是
+    //js会把fn3和它调用的变量捆绑
+
+
+    //闭包的作用
+    //使用闭包模拟私有方法
+    //定义一个函数，该函数用于创建一系列的计数器（函数）
+    const make =  function(){
+        let privateCounter =0
+        function changeVal(val){
+            privateCounter += val
+        }
+        let obj= {
+            //对象内部定义3个方法
+            //这三个函数都使用了外部的变量
+            increment: function () {
+                changeVal(1)
+            },
+            decrement: function () {
+                changeVal(-1)
+            },
+            value:function() {
+                return privateCounter;
+            }
+        }
+        return obj
+    }
+
+    //使用make创建一系列的计算
+    let counter1 =make()
+    let counter2 =make()
+    //分别+1/-1
+    counter1.increment();
+    counter2.decrement();
+
+    //最后把计算器的值打印，得到的结果是私有的
+    console.log(counter1.value());
+    console.log(counter2.value());
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

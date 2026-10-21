@@ -2,98 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>函数参数</title>
+    <title>this关键字</title>
 </head>
 <body>
+
+
 <script>
-    //1.js对函数参数不做校验（个数、类型）
-    //js函数没有重载
-    //如果有同名的函数，后面的函数会覆盖前面的函数
-    function fn1(a,b){
-        return a + b
+
+    //全局上下文this--》window
+    console.log(this)
+
+
+    //函数上下文
+    //1 函数作为一个普通函数执行
+    //函数里面的this指向window
+    function fn1(){
+        console.log(this)
     }
-    function fn1(a,b,c){
-        return a + b + c
+    console.log('函数作为普通函数执行this')
+    fn1()//window
+
+    //2 函数作为对象方法调用
+
+    let obj1 ={
+        menthod:fn1
     }
-
-    let result1 = fn1(1,2)  //实际调用第二个函数，c不会赋值
-    console.log(result1) //NaN
-
-    //2. js函数调用时，不对参数个数校验
-    function fn2(a,b){
-        return a + b
-    }
-    let result2_1 = fn2(1,2)
-    console.log(result2_1)
-    let result2_2 = fn2(1,2,3)
-    console.log(result2_2)
-    let result2_3 = fn2(1)  //语法上正确，只不过返回值可能不符合需求
-    console.log(result2_3)
-
-    //3 参数默认值
-    // 如果调用时没有给函数传参，使用默认值
-    function fn3(a=0,b=0){
-        return a + b
-    }
-    let result3_1 = fn3(1,2)
-    console.log(result3_1)
-    let result3_2 = fn3()
-    console.log(result3_2)
-    let result3_3 = fn3(1)
-    console.log(result3_3)
+    console.log('函数作为对象方法执行')
+    console.log(obj1);//obj1
 
 
-    //4 余下参数（Rest参数）:....
-    //当实际参数大于形参个数时，多于固定形参个数的实参可以用Rest参数接收
-    //余下参数必须位于固定参数后
-    function fn4(a,b,...args){
-        let sum = a + b
-        //使用循环从余下参数取出
-        for (let item of args) {
-            sum += item
-        }
-        return sum
+    //3 函数最为构造函数执行
+    function Person(name) {
+        this.name=name;
+        console.log(this.name);
     }
 
-    let result4_1 = fn4(1,2)
-    console.log(result4_1)
-    let result4_2 = fn4(1,2,3)
-    console.log(result4_2)
 
-    //5 arrgument对象
-    //使用function声明的函数，所有传入函数的参数
-    //都会默认放进argument对象
-    function fn5(a,b){
-        console.log(a)
-        console.log(b)
-        //argument对象获取所有实参
-        for(let item of arguments){
-            console.log(item)
+
+
+    //4 函数是使用call /apply 方法简介调用
+    function fn2(){
+        console.log(this)
+    }
+    console.log('函数是使用call/apply方法间接调用this：')
+    //函数是使用call/apply方法间接调用,
+    //this指向传给call，apply方法的第一个参数（一般是对象）
+
+    fn2.call({x:1,y:1},'abc');//this->{x:1,y:1}
+    fn2.apply({x:1,y:1},[]);//this->{x:1,y:1}
+
+
+    //5 箭头函数中的this
+    let obj5 ={
+        menthod1:function (){
+            console.log(this)
+        },
+        menthod2:()=>{
+            console.log(this)
         }
     }
+    console.log('箭头函数中的this')
+    //箭头函数不创建自己的this，从箭头函数作用域上继承
+    obj5.menthod1();//this-》obj5
+    obj5.menthod2();//this->window
 
-    fn5(1,2)
-    fn5(3,4,5,6,7,8,9,10)
-
-    //6扩展操作符在函数传参的应用
-    function fn6(...args){
-        //求最大值
-        let max = args[0]
-        for (let item of args) {
-            if (item > max){
-                max = item
-            }
-        }
-        console.log('最大值：',max)
-    }
-    let arr6 = [1,4,3,9,7,2,10]
-    //从数组取值传入函数
-    fn6(arr6[0],arr6[1],arr6[2],arr6[3],arr6[4],arr6[5],arr6[6],arr6[7])
-    //在函数调用里，可以使用扩展操作符把数组元素展开，作为函数实参
-    fn6(...arr6)
 
 
 </script>
+
 
 </body>
 </html>
