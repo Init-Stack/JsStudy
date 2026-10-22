@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型</title>
+</head>
+<body>
+<script>
+    //原型prototype:给其他对象共享属性(方法)的对象
+    //js中，所有对象都可以是其他对象的原型
+    let human = {
+        name:'张三',
+        age:25,
+        height:170
+    }
+    let human1 = Object.create(human)
+    console.log(human1.age)
+    console.log(human1.name)
+    let human2 = Object.create(human)
+    console.log(human2.age)
+    console.log(human2.name)
+
+    //访问原型
+    //所有js对象都有一个原型
+    //访问对象原型的方法：
+    //1.使用Object.getPrototypeOf()方法
+    let obj1 = Object.getPrototypeOf(human1)
+    console.log(obj1)
+    let obj2 = {
+        x:1,
+        y:2
+    }
+    //字面量创建的对象:默认的原型Object()构造函数的原型
+    let obj2_1 = Object.getPrototypeOf(obj2)
+    console.log(obj2_1)
+
+    //2 使用隐藏属性__proto__访问的对象原型
+    console.log(human1.__proto__)
+
+    //设置对象原型
+    //setPrototypeOf()
+    Object.setPrototypeOf(obj2,human)
+    console.log(obj2.name) //继承human属性
+    //使用__proto__属性
+    let obj3 = {
+        a:3,
+        b:3
+    }
+    obj3.__proto__ = human
+    console.log(obj3.age)
+
+
+</script>
+
+</body>
+</html>

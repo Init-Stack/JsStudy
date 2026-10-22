@@ -2,28 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>高阶函数</title>
+    <title>内置函数</title>
 </head>
 <body>
 
+<input type="text" id="exp">
+<button onclick="cal()">计算</button>
+<br>
+<span id="result"></span>
+<br><br>
+
+<button onclick="starter1()">开始1</button>
+<button onclick="stop1()">结束1</button>
+<div id="time1">0</div>
+
+<br><br>
+
+<button onclick="starter2()">开始2</button>
+<button onclick="stop2()">结束2</button>
+<div id="time2">0</div>
 
 <script>
-    //高阶函数：形参或结果是函数，或形参结果都是函数
-    //这样的函数叫高阶函数
-
-    //高阶函数的作用
-    //1 使用高阶函数创建的系列类似功能的函数
-    function fn1(x){
-        return x + 1;
+    //eval
+    function cal(){
+        //获取输入框的表达式
+        let exp = document.getElementById("exp").value;
+        //使用eval运算
+        let result = eval(exp);
+        //输出结果
+        document.getElementById("result").innerHTML = result;
+        // alert(result);
     }
 
-    function fn2(x){
-        return x>5;
+    //setTimeout:指定xxx毫秒后执行指定代码
+    let x = 0
+    let meter1
+    function count1(){
+        x = x+1
+        document.getElementById("time1").innerText = x
+        //使用setTimeout每隔1秒执行一次count1
+        meter1 = setTimeout('count1()',1000)
     }
-    function fn3(x){
-        return x>100;
+    function starter1(){
+        count1()
+    }
+    function stop1(){
+        clearTimeout(meter1)
+    }
+
+
+    //setInterval:在指定时间间隔，周期性的执行js代码
+    let y = 0
+    let meter2
+
+    function count2(){
+        y = y+1
+        document.getElementById("time2").innerText = y
+    }
+    function starter2(){
+        //只要使用setInterval启动对应的js函数，就按间隔时间一直运行
+        meter2 = setInterval('count2()',1000)
+    }
+    function stop2(){
+        clearInterval(meter2)
     }
 
 </script>
+
+
+
 </body>
 </html>
