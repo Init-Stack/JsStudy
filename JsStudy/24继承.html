@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承</title>
+</head>
+<body>
+<script>
+    //1 显示的原型继承
+    //1.1 使用Object.setPrototypeOf()方法，修改对象的继承关系
+    let obj1     ={
+        x:1,
+        y:1
+    }
+    console.log('obj1',obj1.__proto__)
+    let obj2     ={
+        a:2,
+        b:3
+    }
+    console.log('obj2',obj2.__proto__)
+    //修改obj1的原型
+    Object.setPrototypeOf(obj1, obj2)
+    //obj1的原型--> obj2
+    console.log('修改后obj1',obj1.__proto__)
+    //能访问obj2的属性
+    console.log(obj1.a)
+
+    //1.2 直接使用Object.create()方法，
+    //基于一个现有对象创建一个新对象
+    let obj3     ={
+        a:100,
+        b:200
+    }
+    let obj4     =Object.create(obj3)
+    //obj4的原型---》obj3
+    console.log('obj4的原型',obj4.__proto__)
+    console.log(obj4.a)
+
+    //2 隐式的原型继承
+    function SuperType(){
+        this.name = '父类型'
+        this.action = function (){
+            console.log(this.name + '的动作')
+        }
+    }
+    function SubType(){
+        this.subName = '子类型'
+        this.subAction = function (){
+            console.log(this.subName+'的动作')
+        }
+    }
+</script>
+</body>
+</html>
